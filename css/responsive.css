@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+@media screen and (max-width: 600px) {
+    .header__logo {
+        height: 48px;
+        margin-right: 0.5em;
+      }
+    .header__title {
+        margin-left: 0;
+        font-size: 2em;
+        vertical-align: bottom; 
+    }
+    .col-25, .col-75, input[type=submit] {
+      width: 100%;
+      margin-top: 5px;
+    }
+    
+    .log_in{order: 1;}
+  }
+
+@media screen and (min-width: 850px) {
+    main, .header__inner, .content {
+      width: 850px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+}
