@@ -56,8 +56,8 @@ header, footer, section, div {
  * sign up 
  * 
  */
-/* Style inputs, select elements and textareas */
-input[type=text], select, input[type=password]{
+/* Style inputs, select elements, password and email */
+input[type=text], select, input[type=password], input[type=email]{
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
