@@ -1,3 +1,4 @@
+/*sign up css also some parts reused by other pages**/
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -19,6 +20,7 @@
     }
     
     .log_in{order: 1;}
+    .forgot_password{order: 1;}
   }
 
 @media screen and (min-width: 850px) {
@@ -27,4 +29,26 @@
       margin-left: auto;
       margin-right: auto;
     }
+    .forgot_password{order: 1;}
+}
+
+/*Log in css**/
+@media screen and (min-width: 350px) {
+ #log_in_container{
+    width: 350px;
+    height: 675px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5% 0px 0px 0px;
+ }
+
+ #log_in_container .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 5px;
+}
+
+}
+
+@media screen and (min-width: 601px) and (max-width: 849px){
+    .forgot_password{order: 1;}
 }
