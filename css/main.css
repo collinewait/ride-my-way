@@ -1,3 +1,5 @@
+/*sign up css also some parts reused by other pages**/
+
 body, html {
     margin: 0;
     padding: 0;
@@ -84,7 +86,7 @@ input[type=submit] {
 }
 
 /* Style the  container */
-#sign__up {
+#form_container {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding:0px 16px 16px 16px;
@@ -135,11 +137,11 @@ a{
     padding: 1.5em;
 }
 
-#sign__up a{
+#form_container a{
     text-decoration: none;
 }
 
-#sign__up h2{
+#form_container h2{
     text-align: center;
     color: #212121
 }
@@ -159,3 +161,5 @@ footer {
     background-color:#35424a;
     color:#ffffff;
   }
+
+/*Log in css**/
