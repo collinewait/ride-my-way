@@ -115,10 +115,11 @@ input[type=submit] {
     clear: both;
 }
 
-/*content*/
-main .content{
-    margin-top: 5px;
+/*sign_in_container*/
+#sign_in_container{
+    padding: 5%;
 }
+
 
 /*
  *
