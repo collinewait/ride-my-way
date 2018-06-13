@@ -1,3 +1,17 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+header, footer, section, div {
+    box-sizing: border-box;
+}
+
+* {
+    box-sizing: border-box;
+}
 /*
 *
 * Header
@@ -30,3 +44,118 @@
     display: inline-block;
     color: #212121;
 }
+
+/*
+ *
+ * Content
+ *
+ */
+
+/*
+ *
+ * sign up 
+ * 
+ */
+/* Style inputs, select elements and textareas */
+input[type=text], select, input[type=password]{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+/* Style the label to display next to the inputs */
+label {
+    padding: 10px 10px 10px 0;
+    display: inline-block;
+}
+
+/* Style the submit button */
+input[type=submit] {
+    background-color: #35424a;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+/* Style the  container */
+#sign__up {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding:0px 16px 16px 16px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+/* Floating column for labels: 18% width */
+.col-25 {
+    float: left;
+    width: 18%;
+    margin-top: 6px;
+}
+
+/* Floating column for inputs: 82% width */
+.col-75 {
+    float: right;
+    width: 82%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/*content*/
+main .content{
+    margin-top: 5px;
+}
+
+/*
+ *
+ * Main
+ *
+ */
+main {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* padding of 1.5em for easy use on mobile while tapping on links*/
+a{
+    padding: 1.5em;
+}
+
+#sign__up a{
+    text-decoration: none;
+}
+
+#sign__up h2{
+    text-align: center;
+    color: #212121
+}
+
+/*
+ *
+ * Footer
+ *
+ */
+
+footer {
+    
+    padding:25px;
+    margin-top:25px;
+    width: 100%;
+    text-align: center;
+    background-color:#35424a;
+    color:#ffffff;
+  }
