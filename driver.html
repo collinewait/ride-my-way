@@ -34,8 +34,62 @@
                   </div>
                   
                   <div id="add_ride" class="tabcontent">
-                    <h3>Add your ride offer</h3>
-                    <p>Am adding them.</p>
+                        <div class="form_container">
+                                <h2>Add a Ride Offer</h2>
+                                <form>
+                                    <div class="row">
+                                        <div class="col-25">
+                                             <label for="departure_location">Departure Location</label>
+                                        </div>
+                                        <div class="col-75">
+                                            <input type="text" id="departure_location" name="departure_location" placeholder="Enter your departure location" autofocus required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-25">
+                                                <label for="destination">Destination</label>
+                                        </div>
+                                        <div class="col-75">
+                                            <input type="text" id="destination" name="destination" placeholder="Enter your destination" autofocus required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-25">
+                                                <label for="departure_date">Departure date</label>
+                                        </div>
+                                        <div class="col-75">
+                                            <input type="date" id="departure_date" name="departure_date" placeholder="Enter departure date" autofocus required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-25">
+                                                <label for="departure_time">Departure time</label>
+                                        </div>
+                                        <div class="col-75">
+                                            <input type="time" id="departure_time" value="12:00" name="departure_time" placeholder="Enter dparture time" autofocus required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-25">
+                                                <label for="no_of_passengers">Number of passengerss</label>
+                                        </div>
+                                        <div class="col-75">
+                                            <input type="text" id="no_of_passengers" name="no_of_passengers" placeholder="Enter number of passengers" required/>
+                                        </div>
+                                    </div>
+                
+                                    <div class="row">
+                                        <div class="container">
+                                            <div class="col-25 forgot_password">
+                                                    <input type="reset" value="Cancel">
+                                            </div>
+                                            <div class="col-75 save">
+                                                    <input type="submit" value="Save">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                        </div>
                 </div>
             </div>
         </section>
