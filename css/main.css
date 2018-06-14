@@ -235,6 +235,7 @@ input[type=reset] {
 .table_display th, 
 .table_display td{
     padding: 1em;
+    text-align: left;
 }
 
 .table_display th{
