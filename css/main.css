@@ -186,8 +186,9 @@ footer {
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
+    padding: 1.5em;
     transition: 0.3s;
+    width: 50%;
 }
 
 /* Change background color of buttons on hover */
