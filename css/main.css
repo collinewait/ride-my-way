@@ -221,13 +221,13 @@ input[type=reset] {
 
 /*style requests table**/
 .requests {
-    padding-top: 1em;
-    flex-grow: 1;
+    width: 100%;
   }
 
 .requests__table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
 }
 
 .requests__table th, 
