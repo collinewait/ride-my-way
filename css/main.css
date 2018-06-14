@@ -199,6 +199,7 @@ footer {
 /* Create an active/current tablink class */
 .tab button.active {
     background-color: #78909C;
+    color: #ffffff;
 }
 
 /* Style the tab content */
