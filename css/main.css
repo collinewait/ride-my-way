@@ -226,28 +226,28 @@ input[type=reset] {
     width: 100%;
   }
 
-.requests__table {
+.table_display {
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
 }
 
-.requests__table th, 
-.requests__table td{
+.table_display th, 
+.table_display td{
     padding: 1em;
 }
 
-.requests__table th{
+.table_display th{
     color: #fff;
     font-weight: 300;
     background-color: #78909C;
 }
 
-.requests__table tr:nth-child(odd) td {
+.table_display tr:nth-child(odd) td {
     background-color: #fff;
 }
 
-.requests__table tr:nth-child(even) td {
+.table_display tr:nth-child(even) td {
     background-color: #eceff1;
 }
 
