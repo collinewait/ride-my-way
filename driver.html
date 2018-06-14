@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ride My Way | Add Ride</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="header__inner">
+            <img class="header__logo" src="images/bicycle-ride.png" alt="two people riding a bicycle">
+            <h1 class="header__title">
+            Ride My Way
+            </h1>
+        </div>
+    </header>
+
+    <main>
+        <section class="content">
+            <div id="driver_container">
+                
+                <div class="tab">
+                    <button class="tablinks" id="defaultOpen" onclick="openDriverAction(event, 'view_requests')">View Requests</button>
+                    <button class="tablinks" onclick="openDriverAction(event, 'add_ride')">+Add Ride</button>
+                </div>
+
+                <div id="view_requests" class="tabcontent">
+                    <h3>Requests</h3>
+                    <p>No requests yet.</p>
+                  </div>
+                  
+                  <div id="add_ride" class="tabcontent">
+                    <h3>Add your ride offer</h3>
+                    <p>Am adding them.</p>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <p>Ride My Way, Copyright &copy; 2018</p>
+        </footer>
+    </main>
+    <script>
+        function openDriverAction(evt, driverAction) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(driverAction).style.display = "block";
+    evt.currentTarget.className += " active";
+
+}
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click(); 
+    </script>
+</body>
+</html>
