@@ -260,7 +260,7 @@ input[type=reset] {
     cursor: pointer;
 }
 
-#accept{
+#accept, #view_details{
     background-color: #35424a;
     color: white;
     padding: 0.7em;
