@@ -21,118 +21,120 @@
 
     <main>
         <section class="content">
-            <div id="driver_container">
-                
-                <div class="tab">
-                    <button class="tablinks" id="defaultOpen" onclick="openDriverAction(event, 'view_requests')">View Requests</button>
-                    <button class="tablinks" onclick="openDriverAction(event, 'add_ride')">+Add Ride</button>
-                </div>
-
-                <div id="view_requests" class="tabcontent">
-                    <h2>View Passenger Requests</h2>
-                    <div class="requests">
-                        <table class="requests__table">
-                            <thead>
-                                <tr>
-                                <th>Name</th>
-                                <th >Id No.</th>
-                                <th colspan="2">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Waitire</td>
-                                    <td>2134</td>
-                                    <td><button id="accept">Accept</button></td>
-                                    <td><button id="reject">Reject</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Colline</td>
-                                    <td>243678890</td>
-                                    <td><button id="accept">Accept</button></td>
-                                    <td><button id="reject">Reject</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Racheal</td>
-                                    <td>5678993</td>
-                                    <td><button id="accept">Accept</button></td>
-                                    <td><button id="reject">Reject</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Colline</td>
-                                    <td>905589</td>
-                                    <td><button id="accept">Accept</button></td>
-                                    <td><button id="reject">Reject</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Rebecca</td>
-                                    <td>658977</td>
-                                    <td><button id="accept">Accept</button></td>
-                                    <td><button id="reject">Reject</button></td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
+            <div id="driver_menu_container">
+                <div id="driver_container">
+                    
+                    <div class="tab">
+                        <button class="tablinks" id="defaultOpen" onclick="openDriverAction(event, 'view_requests')">View Requests</button>
+                        <button class="tablinks" onclick="openDriverAction(event, 'add_ride')">+Add Ride</button>
                     </div>
-                  </div>
-                  
-                  <div id="add_ride" class="tabcontent">
-                        <div class="form_container">
-                                <h2>Add a Ride Offer</h2>
-                                <form>
-                                    <div class="row">
-                                        <div class="col-25">
-                                             <label for="departure_location">Departure Location</label>
-                                        </div>
-                                        <div class="col-75">
-                                            <input type="text" id="departure_location" name="departure_location" placeholder="Enter your departure location" autofocus required>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-25">
-                                                <label for="destination">Destination</label>
-                                        </div>
-                                        <div class="col-75">
-                                            <input type="text" id="destination" name="destination" placeholder="Enter your destination" autofocus required>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-25">
-                                                <label for="departure_date">Departure date</label>
-                                        </div>
-                                        <div class="col-75">
-                                            <input type="date" id="departure_date" name="departure_date" placeholder="Enter departure date" autofocus required>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-25">
-                                                <label for="departure_time">Departure time</label>
-                                        </div>
-                                        <div class="col-75">
-                                            <input type="time" id="departure_time" value="12:00" name="departure_time" placeholder="Enter dparture time" autofocus required>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-25">
-                                                <label for="no_of_passengers">Number of passengerss</label>
-                                        </div>
-                                        <div class="col-75">
-                                            <input type="text" id="no_of_passengers" name="no_of_passengers" placeholder="Enter number of passengers" required/>
-                                        </div>
-                                    </div>
-                
-                                    <div class="row">
-                                        <div class="container">
-                                            <div class="col-25 reset">
-                                                    <input type="reset" value="Cancel">
-                                            </div>
-                                            <div class="col-75 save">
-                                                    <input type="submit" value="Save">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
+
+                    <div id="view_requests" class="tabcontent">
+                        <h2>View Passenger Requests</h2>
+                        <div class="requests">
+                            <table class="requests__table">
+                                <thead>
+                                    <tr>
+                                    <th>Name</th>
+                                    <th >Id No.</th>
+                                    <th colspan="2">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Waitire</td>
+                                        <td>2134</td>
+                                        <td><button id="accept">Accept</button></td>
+                                        <td><button id="reject">Reject</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Colline</td>
+                                        <td>243678890</td>
+                                        <td><button id="accept">Accept</button></td>
+                                        <td><button id="reject">Reject</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Racheal</td>
+                                        <td>5678993</td>
+                                        <td><button id="accept">Accept</button></td>
+                                        <td><button id="reject">Reject</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Colline</td>
+                                        <td>905589</td>
+                                        <td><button id="accept">Accept</button></td>
+                                        <td><button id="reject">Reject</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rebecca</td>
+                                        <td>658977</td>
+                                        <td><button id="accept">Accept</button></td>
+                                        <td><button id="reject">Reject</button></td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
                         </div>
+                    </div>
+                    
+                    <div id="add_ride" class="tabcontent">
+                            <div class="form_container">
+                                    <h2>Add a Ride Offer</h2>
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-25">
+                                                <label for="departure_location">Departure Location</label>
+                                            </div>
+                                            <div class="col-75">
+                                                <input type="text" id="departure_location" name="departure_location" placeholder="Enter your departure location" autofocus required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-25">
+                                                    <label for="destination">Destination</label>
+                                            </div>
+                                            <div class="col-75">
+                                                <input type="text" id="destination" name="destination" placeholder="Enter your destination" autofocus required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-25">
+                                                    <label for="departure_date">Departure date</label>
+                                            </div>
+                                            <div class="col-75">
+                                                <input type="date" id="departure_date" name="departure_date" placeholder="Enter departure date" autofocus required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-25">
+                                                    <label for="departure_time">Departure time</label>
+                                            </div>
+                                            <div class="col-75">
+                                                <input type="time" id="departure_time" value="12:00" name="departure_time" placeholder="Enter dparture time" autofocus required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-25">
+                                                    <label for="no_of_passengers">Number of passengerss</label>
+                                            </div>
+                                            <div class="col-75">
+                                                <input type="text" id="no_of_passengers" name="no_of_passengers" placeholder="Enter number of passengers" required/>
+                                            </div>
+                                        </div>
+                    
+                                        <div class="row">
+                                            <div class="container">
+                                                <div class="col-25 reset">
+                                                        <input type="reset" value="Cancel">
+                                                </div>
+                                                <div class="col-75 save">
+                                                        <input type="submit" value="Save">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                            </div>
+                    </div>
                 </div>
             </div>
         </section>
