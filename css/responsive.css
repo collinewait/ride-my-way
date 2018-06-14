@@ -4,6 +4,8 @@
     flex-wrap: wrap;
   }
 
+  .log_in{order: 1;}
+
 @media screen and (max-width: 600px) {
     .header__logo {
         height: 48px;
@@ -19,7 +21,6 @@
       margin-top: 5px;
     }
     
-    .log_in{order: 1;}
     .forgot_password{order: 1;}
   }
 
