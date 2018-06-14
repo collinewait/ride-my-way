@@ -16,12 +16,13 @@
         font-size: 2em;
         vertical-align: bottom; 
     }
-    .col-25, .col-75, input[type=submit] {
+    .col-25, .col-75, input[type=submit], input[type=reset] {
       width: 100%;
       margin-top: 5px;
     }
     
     .forgot_password{order: 1;}
+    .reset{order: 1}
   }
 
 @media screen and (min-width: 850px) {
@@ -31,6 +32,8 @@
       margin-right: auto;
     }
     .forgot_password{order: 1;}
+
+
 }
 
 /*Log in css**/
@@ -52,4 +55,27 @@
 
 @media screen and (min-width: 601px) and (max-width: 849px){
     .forgot_password{order: 1;}
+
 }
+
+@media screen and (min-width: 601px){
+
+  #add_ride .form_container .col-25{
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+  }
+
+  #add_ride .form_container .reset{
+    padding: 0px 5% 0px 0px;
+  }
+
+    #add_ride .form_container .col-75{
+      float: left;
+      width: 75%;
+      margin-top: 6px;
+    }
+
+    .save{order: 1}
+}
+
