@@ -142,7 +142,7 @@ a{
     text-decoration: none;
 }
 
-.form_container h2{
+.form_container h2, #view_requests h2{
     text-align: center;
     color: #212121
 }
@@ -272,4 +272,5 @@ input[type=reset] {
 #driver_menu_container{
     padding: 5%; 
 }
+
 
