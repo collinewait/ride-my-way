@@ -25,52 +25,55 @@
                 <div id="driver_container">
                     
                     <div class="tab">
+                        <button class="tablinks" onclick="openDriverAction(event, 'view_offers')">View Offers</button>
                         <button class="tablinks" id="defaultOpen" onclick="openDriverAction(event, 'view_requests')">View Requests</button>
                         <button class="tablinks" onclick="openDriverAction(event, 'add_ride')">+Add Ride</button>
                     </div>
 
-                    <div id="view_requests" class="tabcontent">
-                        <h2>Passenger Requests</h2>
-                        <div class="requests">
-                            <table class="table_display">
-                                <thead>
-                                    <tr>
-                                    <th>Name</th>
-                                    <th >Id No.</th>
-                                    <th colspan="2">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Waitire</td>
-                                        <td>2134</td>
-                                        <td><button id="accept">Accept</button></td>
-                                        <td><button id="reject">Reject</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Colline</td>
-                                        <td>243678890</td>
-                                        <td><button id="accept">Accept</button></td>
-                                        <td><button id="reject">Reject</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Racheal</td>
-                                        <td>5678993</td>
-                                        <td><button id="accept">Accept</button></td>
-                                        <td><button id="reject">Reject</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Colline</td>
-                                        <td>905589</td>
-                                        <td><button id="accept">Accept</button></td>
-                                        <td><button id="reject">Reject</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Rebecca</td>
-                                        <td>658977</td>
-                                        <td><button id="accept">Accept</button></td>
-                                        <td><button id="reject">Reject</button></td>
-                                    </tr>
+
+
+                <div id="view_requests" class="tabcontent">
+                    <h2>Passenger Requests</h2>
+                    <div class="requests">
+                        <table class="table_display">
+                            <thead>
+                                <tr>
+                                <th>Name</th>
+                                <th >Id No.</th>
+                                <th colspan="2">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Waitire</td>
+                                    <td>2134</td>
+                                    <td><button id="accept">Accept</button></td>
+                                    <td><button id="reject">Reject</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Colline</td>
+                                    <td>243678890</td>
+                                    <td><button id="accept">Accept</button></td>
+                                    <td><button id="reject">Reject</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Racheal</td>
+                                    <td>5678993</td>
+                                    <td><button id="accept">Accept</button></td>
+                                    <td><button id="reject">Reject</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Colline</td>
+                                    <td>905589</td>
+                                    <td><button id="accept">Accept</button></td>
+                                    <td><button id="reject">Reject</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Rebecca</td>
+                                    <td>658977</td>
+                                    <td><button id="accept">Accept</button></td>
+                                    <td><button id="reject">Reject</button></td>
+                                </tr>
                                     
                                 </tbody>
                             </table>
