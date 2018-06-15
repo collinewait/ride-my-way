@@ -312,3 +312,6 @@ input[type=reset] {
     cursor: pointer;
 }
 
+#ride_request{
+    float: right;
+}
