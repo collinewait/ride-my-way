@@ -64,7 +64,16 @@
 
 @media screen and (min-width: 601px) and (max-width: 849px){
     .forgot_password{order: 1;}
-
+    .details_content{
+      padding: 3%;
+    }
+  
+    .full {
+      display: inline;
+    }
+    .abbr {
+      display: none;
+    }
 }
 
 @media screen and (min-width: 601px){
