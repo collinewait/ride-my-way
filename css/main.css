@@ -319,3 +319,11 @@ input[type=reset] {
 #cancel_request{
     float: left;
 }
+
+.rides{
+    padding: 2%;
+}
+#no_of_rides_given p{
+    font-weight: 900;
+    color: #35424a;
+}
