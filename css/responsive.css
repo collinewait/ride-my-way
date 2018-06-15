@@ -89,10 +89,17 @@
   .abbr {
     display: inline;
   }
+}
 
-  .details_content .table_display th, 
-  .details_contents .table_display td{
-    padding: o.3em;
-    text-align: left;
+@media screen and (min-width: 401px) and (max-width: 849px){
+  .details_content{
+    padding: 2%;
+  }
+
+  .full {
+    display: inline;
+  }
+  .abbr {
+    display: none;
   }
 }
