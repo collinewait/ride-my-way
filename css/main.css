@@ -47,6 +47,14 @@ header, footer, section, div {
     color: #212121;
 }
 
+.header__logout{
+    font-weight: 300;
+    font-size: 2em;
+    margin: 0.27em 0.75em;
+    display: inline-block;
+    color: #212121;
+}
+
 /*
  *
  * Content
@@ -138,7 +146,7 @@ a{
     padding: 1.5em;
 }
 
-.form_container a{
+.form_container a, .header__logout a{
     text-decoration: none;
 }
 
