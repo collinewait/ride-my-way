@@ -33,9 +33,17 @@ var btn = document.getElementById("view_details");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
+// Get the button that closes the modal
+var btn1 = document.getElementById("cancel_request");
+
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
     modal.style.display = "block";
+}
+
+// When the user clicks on the button, close the modal
+btn1.onclick = function(){
+    modal.style.display = "none";
 }
 
 // When the user clicks on <span> (x), close the modal
