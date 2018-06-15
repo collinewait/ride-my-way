@@ -142,7 +142,7 @@ a{
     text-decoration: none;
 }
 
-.form_container h2, #view_requests h2, #view_offers h2{
+.form_container h2, #view_requests h2, #view_offers h2, #all_rides h2{
     text-align: center;
     color: #212121
 }
