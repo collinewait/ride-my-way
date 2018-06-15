@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ride My Way | Add Ride</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="header__inner">
+            <img class="header__logo" src="images/bicycle-ride.png" alt="two people riding a bicycle">
+            <h1 class="header__title">
+            Ride My Way
+            </h1>
+            <h1 class="header__logout">
+                <a href="index.html">Log out</a>
+            </h1>
+        </div>
+    </header>
+
+    <main>
+        <section class="content">
+            <div class="rides">
+                <div id="no_of_rides_given">
+                    <p>No.of Rides Given: 2</p>
+                </div>
+                <div id="no_of_rides_taken">
+                    <p>No.of Rides Taken: 2</p>
+                </div>
+            </div>
+            <div id="driver_menu_container">
+                <div id="driver_container">
+                    
+                    <div class="tab">
+                        <button class="tablinks" id="defaultOpen" onclick="openDriverAction(event, 'view_offers')">View Offers</button>
+                        <button class="tablinks" onclick="openDriverAction(event, 'view_requests')">View Requests</button>
+                        <button class="tablinks" onclick="openDriverAction(event, 'add_ride')">+Add Ride</button>
+                        <button class="tablinks" onclick="openDriverAction(event, 'all_rides')">All Rides</button>
+                    </div>
+                    
+                    <div id="view_offers" class="tabcontent">
+                        <h2>Available Ride Offers</h2>
+                        <div class="ride_offers">
+                            <table class="table_display">
+                                    <thead>
+                                        <tr>
+                                        <th>Driver Name</th>
+                                        <th >Id No.</th>
+                                        <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Wait</td>
+                                            <td>214</td>
+                                            <td><button id="view_details">View Details</button></td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                        </div>
+                        <div class="modal_container">
+                            <div id="details_modal" class="modal">
+                                <div class="details_content">
+                                    <span class="close">&times</span>
+                                    <table class="table_display">
+                                        <col width="20%">
+                                        <col width="20%">
+                                        <col width="30%">
+                                        <col width="15%">
+                                        <col width="15%">
+                                        <thead>
+                                            <tr>
+                                                <th> <span class="full"> Departure Location</span><span class="abbr">Dep Loc</span></th>
+                                                <th> <span class="full"> Destination</span><span class="abbr">Dest</span></th>
+                                                <th> <span class="full">Departure Date</span><span class="abbr">Dep Date</span></th>
+                                                <th> <span class="full">Departure Time</span><span class="abbr">Dep Time</span></th>
+                                                <th> <span class="full">Passenger No</span><span class="abbr">Nos.</span></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Muk main gate</td>
+                                                <td>Moscow Russia</td>
+                                                <td>17/06/2018</td>
+                                                <td>12:40 PM</td>
+                                                <td>4</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <button id="ride_request">Request Ride</button>
+                                    <button id="cancel_request">close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="view_requests" class="tabcontent">
+                        <h2>Passenger Requests</h2>
+                        <div class="requests">
+                            <table class="table_display">
+                                <thead>
+                                    <tr>
+                                    <th>Name</th>
+                                    <th >Id No.</th>
+                                    <th colspan="2">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Waitire</td>
+                                        <td>2134</td>
+                                        <td><button id="accept">Accept</button></td>
+                                        <td><button id="reject">Reject</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Colline</td>
+                                        <td>243678890</td>
+                                        <td><button id="accept">Accept</button></td>
+                                        <td><button id="reject">Reject</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Racheal</td>
+                                        <td>5678993</td>
+                                        <td><button id="accept">Accept</button></td>
+                                        <td><button id="reject">Reject</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Colline</td>
+                                        <td>905589</td>
+                                        <td><button id="accept">Accept</button></td>
+                                        <td><button id="reject">Reject</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rebecca</td>
+                                        <td>658977</td>
+                                        <td><button id="accept">Accept</button></td>
+                                        <td><button id="reject">Reject</button></td>
+                                    </tr>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    
+                    <div id="add_ride" class="tabcontent">
+                            <div class="form_container">
+                                    <h2>Add a Ride Offer</h2>
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-25">
+                                                <label for="departure_location">Departure Location</label>
+                                            </div>
+                                            <div class="col-75">
+                                                <input type="text" id="departure_location" name="departure_location" placeholder="Enter your departure location" autofocus required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-25">
+                                                    <label for="destination">Destination</label>
+                                            </div>
+                                            <div class="col-75">
+                                                <input type="text" id="destination" name="destination" placeholder="Enter your destination" autofocus required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-25">
+                                                    <label for="departure_date">Departure date</label>
+                                            </div>
+                                            <div class="col-75">
+                                                <input type="date" id="departure_date" name="departure_date" placeholder="Enter departure date" autofocus required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-25">
+                                                    <label for="departure_time">Departure time</label>
+                                            </div>
+                                            <div class="col-75">
+                                                <input type="time" id="departure_time" value="12:00" name="departure_time" placeholder="Enter dparture time" autofocus required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-25">
+                                                    <label for="no_of_passengers">Number of passengerss</label>
+                                            </div>
+                                            <div class="col-75">
+                                                <input type="text" id="no_of_passengers" name="no_of_passengers" placeholder="Enter number of passengers" required/>
+                                            </div>
+                                        </div>
+                    
+                                        <div class="row">
+                                            <div class="container">
+                                                <div class="col-25 reset">
+                                                        <input type="reset" value="Cancel">
+                                                </div>
+                                                <div class="col-75 save">
+                                                        <input type="submit" value="Save">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                            </div>
+                    </div>
+
+                    <div id="all_rides" class="tabcontent">
+                        <h2>Rides Given and taken</h2>
+                        <div class="rides_given_taken">
+                            <table class="table_display">
+                                    <thead>
+                                        <tr>
+                                        <th>Driver Name</th>
+                                        <th >Ride Id</th>
+                                        <th>Given/ Taken</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Wait</td>
+                                            <td>214</td>
+                                            <td>Given</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Pittman</td>
+                                            <td>356</td>
+                                            <td>Taken</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sulhur</td>
+                                            <td>145</td>
+                                            <td>Taken</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wait</td>
+                                            <td>8967</td>
+                                            <td>Given</td>
+                                        </tr>
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <footer>
+            <p>Ride My Way, Copyright &copy; 2018</p>
+        </footer>
+    </main>
+    <script src="js/main.js"></script>
+</body>
+</html>
