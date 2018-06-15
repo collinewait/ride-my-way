@@ -33,7 +33,16 @@
     }
     .forgot_password{order: 1;}
 
-
+    .details_content{
+      padding: 17%;
+    }
+  
+    .full {
+      display: inline;
+    }
+    .abbr {
+      display: none;
+    }
 }
 
 /*Log in css**/
