@@ -79,3 +79,20 @@
     .save{order: 1}
 }
 
+@media screen and (max-width: 400px){
+  .details_content{
+    padding: 1%;
+  }
+  .full {
+    display: none;
+  }
+  .abbr {
+    display: inline;
+  }
+
+  .details_content .table_display th, 
+  .details_contents .table_display td{
+    padding: o.3em;
+    text-align: left;
+  }
+}
