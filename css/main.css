@@ -344,3 +344,8 @@ input[type=reset] {
     float: left;
     width: 50%;
 }
+
+#demo_link{
+    padding: 3%;
+    text-align: center
+}
