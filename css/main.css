@@ -323,7 +323,16 @@ input[type=reset] {
 .rides{
     padding: 2%;
 }
-#no_of_rides_given p{
+#no_of_rides_given p, #no_of_rides_taken p{
     font-weight: 900;
     color: #35424a;
+}
+
+#no_of_rides_taken{
+    float: right;
+    width: 50%
+}
+#no_of_rides_given{
+    float: left;
+    width: 50%;
 }
