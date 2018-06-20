@@ -35,6 +35,6 @@ class RideViews(MethodView):
         :return: Json format
         """
         if not ride_id:
-            return jsonify({"rides": self.rides})
+            return jsonify({"error_message": False, "rides": self.rides})
 
         return None

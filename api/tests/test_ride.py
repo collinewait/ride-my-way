@@ -23,3 +23,5 @@ class TestRideTestCase(TestCase):
         self.assertIsInstance(response.json["rides"][0], dict)
         self.assertIn(1, response.json["rides"][0].values())
         self.assertIn(2, response.json["rides"][1].values())
+        self.assertIn("error_message", response.json)
+        self.assertIn(False, response.json.values())
