@@ -17,7 +17,7 @@ APP = Flask(__name__)
 APP.testing = TESTING
 APP.env = ENVIRONMENT
 
-Urls.generateUrl(APP)
+Urls.generate_url(APP)
 
 CORS(APP)
 if __name__ == '__main__':
