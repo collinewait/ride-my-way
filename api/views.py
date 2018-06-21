@@ -14,6 +14,9 @@ class RideViews(MethodView):
         Handles post requests
         :return:
         """
+        if not request or not request.json:
+            return jsonify({"status_code": 400, "data": str(request.data),
+                            "error_message": "content not JSON"}), 400
 
         ride = {
             "id": len(self.rides) + 1,

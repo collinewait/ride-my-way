@@ -30,5 +30,23 @@ class TestRideTestCase(TestCase):
         self.assertEqual(response.status_code, 201)
         self.assertIn("ride", response.json)
         self.assertIn("message", response.json)
-        self.assertIn("Ride added successfully", response.json['message'])
+        self.assertEqual("Ride added successfully", response.json['message'])
         self.assertTrue(response.json['ride'])
+
+    def test_non_json_data_not_sent(self):
+        """
+        This method tests that non json data is not sent
+        """
+        date_time = datetime.now()
+        depart_date = date_time.strftime("%x")
+        depart_time = date_time.strftime("%X")
+
+        response = self.client().post('/api/v1/rides/', data=json.dumps(
+            dict(driver_firstname="Jack", driver_lastname="Ma", destination="Mbarara",
+                 departure_date=depart_date, departure_time=depart_time,
+                 number_of_passengers=2)), content_type='text/plain')
+
+        self.assertEqual(response.status_code, 400)
+        self.assertIn("error_message", response.json)
+        self.assertEqual("content not JSON", response.json['error_message'])
+        self.assertTrue(response.json)
