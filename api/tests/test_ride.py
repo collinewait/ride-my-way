@@ -24,3 +24,16 @@ class TestRideTestCase(TestCase):
         self.assertIn("error_message", response.json)
         self.assertIsInstance(response.json['ride'], dict)
         self.assertEqual(len(response.json['ride']), 7)
+
+    def test_all_ride_keys_returned(self):
+        """
+        Test an item is returned with all the expected keys on the ride dictionary
+        """
+        response = self.client().get('/api/v1/rides/1')
+        self.assertIn("id", response.json['ride'])
+        self.assertIn("driver_firstname", response.json['ride'])
+        self.assertIn("driver_lastname", response.json['ride'])
+        self.assertIn("destination", response.json['ride'])
+        self.assertIn("departure_date", response.json['ride'])
+        self.assertIn("departure_time", response.json['ride'])
+        self.assertIn("number_of_passengers", response.json['ride'])
