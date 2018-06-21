@@ -6,7 +6,7 @@ from flask.views import MethodView
 
 class RideViews(MethodView):
     """
-    This clas contains methods that respond to various url end points.
+    This class contains methods that respond to various url end points.
     """
     rides = []
     def post(self):
