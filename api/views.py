@@ -33,6 +33,9 @@ class RideViews(MethodView):
         :return: Json format
         """
         if ride_id:
-            return jsonify({"error_message": False, "ride": self.rides[ride_id - 1]})
+            for ride in self.rides:
+                if ride['id'] == ride_id:
+                    return jsonify({"Status code": 200, "ride": ride, "error_message": False})
 
-        return None
+        return jsonify({"Status code": 200, "message": "Ride not found",
+                        "error_message": False})

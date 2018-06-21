@@ -54,3 +54,14 @@ class TestRideTestCase(TestCase):
         self.assertIn(2, response.json['ride'].values())
         self.assertIn(depart_date, response.json['ride'].values())
         self.assertIn(depart_time, response.json['ride'].values())
+
+    def test_ride_not_found(self):
+        """
+        Test API returns nothing when a ride is not found
+        A return contsins a status code of 200
+        """
+        response = self.client().get('/api/v1/rides/20')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("message", response.json)
+        self.assertIn("Ride not found", response.json.values())
+        self.assertIn(False, response.json.values())
