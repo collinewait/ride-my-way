@@ -2,6 +2,7 @@
 This module contains tests for the api end points.
 """
 from unittest import TestCase
+from datetime import datetime
 from api.app import APP
 class TestRideTestCase(TestCase):
     """
@@ -37,3 +38,19 @@ class TestRideTestCase(TestCase):
         self.assertIn("departure_date", response.json['ride'])
         self.assertIn("departure_time", response.json['ride'])
         self.assertIn("number_of_passengers", response.json['ride'])
+
+    def test_all_ride_values_returned(self):
+        """
+        Test all values expected  in a ride dictionary are returned
+        """
+        date_time = datetime.now()
+        depart_date = date_time.strftime("%x")
+        depart_time = date_time.strftime("%X")
+        response = self.client().get('/api/v1/rides/1')
+        self.assertIn(1, response.json['ride'].values())
+        self.assertIn("Colline", response.json['ride'].values())
+        self.assertIn("Wait", response.json['ride'].values())
+        self.assertIn("Ntinda", response.json['ride'].values())
+        self.assertIn(2, response.json['ride'].values())
+        self.assertIn(depart_date, response.json['ride'].values())
+        self.assertIn(depart_time, response.json['ride'].values())
