@@ -65,3 +65,20 @@ class TestRideTestCase(TestCase):
         self.assertIn("message", response.json)
         self.assertIn("Ride not found", response.json.values())
         self.assertIn(False, response.json.values())
+
+    def test_error_hander_returns_json(self):
+        """
+        Test API returns a json format response when the user hits
+        a wrong api end point
+        """
+        response = self.client().get('/api/v1/rides/me')
+        self.assertEqual(response.status_code, 404)
+        self.assertIsInstance(response.json, dict)
+        self.assertIn("error_message", response.json)
+        self.assertIn("status_code", response.json)
+        self.assertIn("url", response.json)
+        self.assertIn("The requested resource was not found on the server",
+                      response.json.values())
+        self.assertIn(404, response.json.values())
+        self.assertIn("http://localhost/api/v1/rides/me",
+                      response.json.values())
