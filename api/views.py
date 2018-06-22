@@ -52,28 +52,8 @@ class RideViews(MethodView):
         :return:
         """
         if ride_id:
-            if not request or not request.json:
-                return jsonify({"status_code": 400, "data": str(request.data),
-                                "error_message": "content not JSON"}), 400
-            if not request.json["passenger_name"] or not request.json["passenger_id"]\
-                or not request.json["passenger_contact"]:
-                return jsonify({"status_code": 400, "data": request.json,
-                                "error_message": "Some fields are empty"}), 400
 
-            for ride in self.rides:
-                if ride['id'] == ride_id:
-                    ride_request = {
-                        "request_id": len(self.requests) + 1,
-                        "ride_id": ride_id,
-                        "passenger_name": request.json['passenger_name'],
-                        "passenger_id": request.json['passenger_id'],
-                        "passenger_contact": request.json['passenger_contact'],
-                    }
-                    self.requests.append(ride_request)
-                    return jsonify({"Status code": 201, "request": ride_request,
-                                    "message": "request sent successfully"}), 201
-
-            return jsonify({"Status code": 202, "error_message": "Ride not found",}), 202
+            return self.post_request_to_ride_offer(ride_id)
 
         return self.post_ride_offer()
 
@@ -110,3 +90,31 @@ class RideViews(MethodView):
         self.rides.append(ride)
         return jsonify({"status_code": 201, "ride": ride,
                         "message": "Ride added successfully"}), 201
+    def post_request_to_ride_offer(self, ride_id):
+        """
+        This method saves a request to a ride offer when a ride_id is set
+        It takes control from the post() method
+        :return
+        """
+        if not request or not request.json:
+            return jsonify({"status_code": 400, "data": str(request.data),
+                            "error_message": "content not JSON"}), 400
+        if not request.json["passenger_name"] or not request.json["passenger_id"]\
+            or not request.json["passenger_contact"]:
+            return jsonify({"status_code": 400, "data": request.json,
+                            "error_message": "Some fields are empty"}), 400
+
+        for ride in self.rides:
+            if ride['id'] == ride_id:
+                ride_request = {
+                    "request_id": len(self.requests) + 1,
+                    "ride_id": ride_id,
+                    "passenger_name": request.json['passenger_name'],
+                    "passenger_id": request.json['passenger_id'],
+                    "passenger_contact": request.json['passenger_contact'],
+                }
+                self.requests.append(ride_request)
+                return jsonify({"Status code": 201, "request": ride_request,
+                                "message": "request sent successfully"}), 201
+
+        return jsonify({"Status code": 202, "error_message": "Ride not found",}), 202
