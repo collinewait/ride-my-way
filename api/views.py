@@ -51,6 +51,10 @@ class RideViews(MethodView):
         and saves a request to a ride if ride_id is set
         :return:
         """
+        if not request or not request.json:
+            return jsonify({"status_code": 400, "data": str(request.data),
+                            "error_message": "content not JSON"}), 400
+
         if ride_id:
 
             return self.post_request_to_ride_offer(ride_id)
@@ -63,10 +67,6 @@ class RideViews(MethodView):
         It takes control from the post() method
         :return
         """
-        if not request or not request.json:
-            return jsonify({"status_code": 400, "data": str(request.data),
-                            "error_message": "content not JSON"}), 400
-
         if not request.json["driver_firstname"] or not request.json["driver_lastname"]\
                 or not request.json["destination"]:
             return jsonify({"status_code": 400, "data": request.json,
@@ -90,15 +90,13 @@ class RideViews(MethodView):
         self.rides.append(ride)
         return jsonify({"status_code": 201, "ride": ride,
                         "message": "Ride added successfully"}), 201
+
     def post_request_to_ride_offer(self, ride_id):
         """
         This method saves a request to a ride offer when a ride_id is set
         It takes control from the post() method
         :return
         """
-        if not request or not request.json:
-            return jsonify({"status_code": 400, "data": str(request.data),
-                            "error_message": "content not JSON"}), 400
         if not request.json["passenger_name"] or not request.json["passenger_id"]\
             or not request.json["passenger_contact"]:
             return jsonify({"status_code": 400, "data": request.json,
