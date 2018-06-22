@@ -9,7 +9,6 @@ class RideViews(MethodView):
     """
     This clas contains methods that respond to various url end points.
     """
-
     date_time = datetime.now()
     dapart_date = date_time.strftime("%x")
     depart_time = date_time.strftime("%X")
@@ -37,4 +36,9 @@ class RideViews(MethodView):
         if not ride_id:
             return jsonify({"error_message": False, "rides": self.rides})
 
-        return None
+        for ride in self.rides:
+            if ride['id'] == ride_id:
+                return jsonify({"Status code": 200, "ride": ride, "error_message": False})
+
+        return jsonify({"Status code": 200, "message": "Ride not found",
+                        "error_message": False})
