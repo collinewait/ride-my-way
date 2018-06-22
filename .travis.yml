@@ -1,6 +1,7 @@
 language: python
 python:
   - "3.5.2"
+  - "2.7.12"
 install:
   - pip3 install -r api/requirements.txt
 script:
