@@ -67,6 +67,11 @@ class RideViews(MethodView):
         It takes control from the post() method
         :return
         """
+        keys = ("driver_firstname", "driver_lastname", "destination",
+                "departure_date", "departure_time", "number_of_passengers")
+        if not set(keys).issubset(set(request.json)):
+            return jsonify({"error_message": "some of these fields are missing"}), 400
+
         if not request.json["driver_firstname"] or not request.json["driver_lastname"]\
                 or not request.json["destination"]:
             return jsonify({"status_code": 400, "data": request.json,

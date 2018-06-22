@@ -149,6 +149,16 @@ class TestRideTestCase(TestCase):
         self.assertEqual("Some fields are empty", response.json['error_message'])
         self.assertTrue(response.json)
 
+    def test_partial_fields_not_sent(self):
+        """
+        This method tests that data with partial fields is not send
+        on creating a ride offer
+        """
+        response = self.client().post('/api/v1/rides/', data=json.dumps(
+            dict(driver_firstname="Jack", driver_lastname="Ma", destination="Mbarara",
+                 number_of_passengers=2)), content_type='application/json')
+        self.assertEqual(response.status_code, 400)
+
     def test_post_joins_a_ride_offer(self):
         """
         This method tests the joinig of a ride offer
@@ -174,7 +184,6 @@ class TestRideTestCase(TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertIn("error_message", response.json)
         self.assertEqual("content not JSON", response.json['error_message'])
-
 
     def test_empty_request_attributes(self):
         """
