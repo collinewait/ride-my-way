@@ -38,3 +38,17 @@ class TestRideTestCase(TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertIn("error_message", response.json)
         self.assertEqual("content not JSON", response.json['error_message'])
+
+
+    def test_empty_request_attributes(self):
+        """
+        This method tests that data is not sent with empty fields
+        """
+        response = self.client().post('/api/v1/rides/1/requests', data=json.dumps(
+            dict(passenger_name="", passenger_id=123, passenger_contact="0771462657"
+                )), content_type='application/json')
+
+        self.assertEqual(response.status_code, 400)
+        self.assertIn("error_message", response.json)
+        self.assertEqual("Some fields are empty", response.json['error_message'])
+        self.assertTrue(response.json)

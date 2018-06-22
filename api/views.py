@@ -35,6 +35,10 @@ class RideViews(MethodView):
         if not request or not request.json:
             return jsonify({"status_code": 400, "data": str(request.data),
                             "error_message": "content not JSON"}), 400
+        if not request.json["passenger_name"] or not request.json["passenger_id"]\
+                or not request.json["passenger_contact"]:
+            return jsonify({"status_code": 400, "data": request.json,
+                            "error_message": "Some fields are empty"}), 400
 
         for ride in self.rides:
             if ride['id'] == ride_id:
