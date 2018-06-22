@@ -75,6 +75,14 @@ class RideViews(MethodView):
 
             return jsonify({"Status code": 202, "error_message": "Ride not found",}), 202
 
+        return self.post_ride_offer()
+
+    def post_ride_offer(self):
+        """
+        This method saves a ride offer when a ride_id is not set
+        It takes control from the post() method
+        :return
+        """
         if not request or not request.json:
             return jsonify({"status_code": 400, "data": str(request.data),
                             "error_message": "content not JSON"}), 400
