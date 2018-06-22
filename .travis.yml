@@ -1,8 +1,7 @@
-language: python
+anguage: python
 python:
   - "2.7"
-
 install:
-  - pip install -r requirements.txt
+  - pip install -r app/requirements.txt
 script:
-  - pytest
+  - py.test --cov-report term-missing --cov app -v
