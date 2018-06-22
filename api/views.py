@@ -27,6 +27,8 @@ class RideViews(MethodView):
 
     ]
 
+    requests = []
+
     def get(self, ride_id):
         """
         All ride offers are returned when no ride_id is specified at the end point
@@ -42,11 +44,37 @@ class RideViews(MethodView):
 
         return jsonify({"Status code": 200, "message": "Ride not found",
                         "error_message": False})
-    def post(self):
+    def post(self, ride_id):
         """"
         Handles post requests
+        saves a ride offer if ride_id is not set
+        and saves a request to a ride if ride_id is set
         :return:
         """
+        if ride_id:
+            if not request or not request.json:
+                return jsonify({"status_code": 400, "data": str(request.data),
+                                "error_message": "content not JSON"}), 400
+            if not request.json["passenger_name"] or not request.json["passenger_id"]\
+                or not request.json["passenger_contact"]:
+                return jsonify({"status_code": 400, "data": request.json,
+                                "error_message": "Some fields are empty"}), 400
+
+            for ride in self.rides:
+                if ride['id'] == ride_id:
+                    ride_request = {
+                        "request_id": len(self.requests) + 1,
+                        "ride_id": ride_id,
+                        "passenger_name": request.json['passenger_name'],
+                        "passenger_id": request.json['passenger_id'],
+                        "passenger_contact": request.json['passenger_contact'],
+                    }
+                    self.requests.append(ride_request)
+                    return jsonify({"Status code": 201, "request": ride_request,
+                                    "message": "request sent successfully"}), 201
+
+            return jsonify({"Status code": 202, "error_message": "Ride not found",}), 202
+
         if not request or not request.json:
             return jsonify({"status_code": 400, "data": str(request.data),
                             "error_message": "content not JSON"}), 400

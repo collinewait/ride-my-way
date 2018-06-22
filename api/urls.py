@@ -21,4 +21,8 @@ class Urls(object):
         app.add_url_rule('/api/v1/rides/<int:ride_id>', view_func=ride_view,
                          methods=['GET'])
 
-        app.add_url_rule('/api/v1/rides/', view_func=ride_view, methods=['POST',])
+        app.add_url_rule('/api/v1/rides/', defaults={'ride_id': None},
+                         view_func=ride_view, methods=['POST',])
+
+        app.add_url_rule('/api/v1/rides/<int:ride_id>/requests',
+                         view_func=ride_view, methods=['POST',])
