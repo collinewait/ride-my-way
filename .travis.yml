@@ -4,4 +4,4 @@ python:
 install:
   - pip install -r api/requirements.txt
 script:
-  - py.test --cov-report term-missing --cov app -v
+  - pytest
