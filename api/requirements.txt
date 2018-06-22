@@ -1,0 +1,4 @@
+Flask==1.0.2
+pytest==3.6.1
+pylint==1.9.2
+Flask-Cors==3.0.6
