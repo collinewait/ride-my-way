@@ -42,7 +42,6 @@ class RideViews(MethodView):
 
         return jsonify({"Status code": 200, "message": "Ride not found",
                         "error_message": False})
-    rides = []
     def post(self):
         """"
         Handles post requests
