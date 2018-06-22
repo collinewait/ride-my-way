@@ -2,7 +2,6 @@ language: python
 python:
   - "3.5.2"
   - "2.7.12"
-  - "stable"
 install:
   - pip install -r api/requirements.txt
 script:
