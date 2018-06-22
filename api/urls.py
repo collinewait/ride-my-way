@@ -1,6 +1,7 @@
 """
 This module handels requests to urls.
 """
+from api.views import RideViews
 
 class Urls(object):
     """
@@ -13,4 +14,7 @@ class Urls(object):
         :param: app: takes in the app variable
         :return: urls
         """
-        pass
+
+        ride_view = RideViews.as_view('ride_api')
+        app.add_url_rule('/api/v1/rides/<int:ride_id>/requests',
+                         view_func=ride_view, methods=['POST',])
