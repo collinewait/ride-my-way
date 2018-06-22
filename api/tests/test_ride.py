@@ -27,3 +27,14 @@ class TestRideTestCase(TestCase):
         self.assertIn("message", response.json)
         self.assertEqual("request sent successfully", response.json['message'])
         self.assertTrue(response.json['request'])
+
+    def test_non_json_request_not_sent(self):
+        """
+        This method tests that non json request is not sent
+        """
+        response = self.client().post('/api/v1/rides/1/requests', data=json.dumps(
+            dict(passenger_name="Jack", passenger_id=123, passenger_contact="0771462657"
+                )), content_type='text/plain')
+        self.assertEqual(response.status_code, 400)
+        self.assertIn("error_message", response.json)
+        self.assertEqual("content not JSON", response.json['error_message'])

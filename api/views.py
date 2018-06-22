@@ -32,11 +32,14 @@ class RideViews(MethodView):
         This method handles requests made to join a ride
         :retun:
         """
+        if not request or not request.json:
+            return jsonify({"status_code": 400, "data": str(request.data),
+                            "error_message": "content not JSON"}), 400
 
         for ride in self.rides:
             if ride['id'] == ride_id:
                 ride_request = {
-                    "request_id": len(self.rides) + 1,
+                    "request_id": len(self.requests) + 1,
                     "ride_id": ride_id,
                     "passenger_name": request.json['passenger_name'],
                     "passenger_id": request.json['passenger_id'],
@@ -46,5 +49,4 @@ class RideViews(MethodView):
                 return jsonify({"Status code": 201, "request": ride_request,
                                 "message": "request sent successfully"}), 201
 
-        return jsonify({"Status code": 202, "message": "Ride not found",
-                        "error_message": False}), 202
+        return jsonify({"Status code": 202, "error_message": "Ride not found",}), 202
