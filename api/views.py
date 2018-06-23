@@ -36,11 +36,12 @@ class RideViews(MethodView):
         :return: Json format
         """
         if not ride_id:
-            return jsonify({"message": "result retrieved successfully", "rides": self.rides})
+            return jsonify({"message": "results retrieved successfully", "rides": self.rides})
 
         for ride in self.rides:
             if ride['id'] == ride_id:
-                return jsonify({"Status code": 200, "ride": ride, "message": "result retrieved successfully"})
+                return jsonify({"Status code": 200, "ride": ride,
+                                "message": "result retrieved successfully"})
 
         return jsonify({"Status code": 200, "message": "Ride not found",
                         "error_message": False})
