@@ -11,7 +11,7 @@ from flask_cors import CORS
 sys.path.append(os.path.pardir)
 
 from api.handler import ErrorHandler
-from api.config import HOST, PORT, DEBUG, ENVIRONMENT, TESTING
+from api.config import ENVIRONMENT, TESTING
 from api.urls import Urls
 
 APP = Flask(__name__)
