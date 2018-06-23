@@ -23,4 +23,4 @@ Urls.generate_url(APP)
 
 CORS(APP)
 if __name__ == '__main__':
-    APP.run(debug=DEBUG, host=HOST, port=PORT)
+    APP.run()
