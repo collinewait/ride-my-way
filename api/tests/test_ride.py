@@ -25,7 +25,7 @@ class TestRideTestCase(TestCase):
         self.assertIsInstance(response.json["rides"][0], dict)
         self.assertIn(1, response.json["rides"][0].values())
         self.assertIn(2, response.json["rides"][1].values())
-        self.assertIn("error_message", response.json)
+        self.assertIn("message", response.json)
         self.assertIn(False, response.json.values())
 
     def test_get_one_ride_offer(self):
@@ -37,7 +37,7 @@ class TestRideTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn("ride", response.json)
         self.assertIn(False, response.json.values())
-        self.assertIn("error_message", response.json)
+        self.assertIn("message", response.json)
         self.assertIsInstance(response.json['ride'], dict)
         self.assertEqual(len(response.json['ride']), 7)
 
