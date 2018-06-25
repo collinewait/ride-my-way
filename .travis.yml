@@ -9,4 +9,4 @@ install:
 script:
   - pytest
 after_sucess:
-  coveralls
+  - coveralls
