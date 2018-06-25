@@ -60,7 +60,7 @@ class TestRideTestCase(TestCase):
         """
         date_time = datetime.now()
         depart_date = date_time.strftime("%x")
-        depart_time = date_time.strftime("%X")
+        depart_time = date_time.strftime("%H:%M")
         response = self.client().get('/api/v1/rides/1')
         self.assertIn(1, response.json['ride'].values())
         self.assertIn("Colline", response.json['ride'].values())
