@@ -11,7 +11,7 @@ class RideViews(MethodView):
     """
     date_time = datetime.now()
     dapart_date = date_time.strftime("%x")
-    depart_time = date_time.strftime("%X")
+    depart_time = date_time.strftime("%H:%M")
 
     rides = [
         {
