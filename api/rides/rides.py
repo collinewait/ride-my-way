@@ -56,7 +56,14 @@ class RidesHandler(object):
         if not set(keys).issubset(set(request.json)):
             return jsonify({"error_message": "some of these fields are missing"}), 400
 
-        if not len(request.json) == 6:
+        request_condition = [
+            request.json["driver_firstname"], request.json["driver_lastname"],
+            request.json["destination"], request.json["departure_date"],
+            request.json["departure_time"],
+            request.json["number_of_passengers"]
+            ]
+
+        if not all(request_condition):
             return self.fields_missing_info()
 
         ride = Ride(
