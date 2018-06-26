@@ -15,6 +15,10 @@ class TestRideTestCase(TestCase):
         self.app = APP
         self.client = self.app.test_client
 
+    date_time = datetime.now()
+    depart_date = date_time.strftime("%x")
+    depart_time = date_time.strftime("%H:%M")
+
     def test_api_gets_all_ride_offers(self):
         """Test API can get all ride offers (GET request)."""
         response = self.client().get('/api/v1/rides/')
@@ -58,17 +62,14 @@ class TestRideTestCase(TestCase):
         """
         Test all values expected  in a ride dictionary are returned
         """
-        date_time = datetime.now()
-        depart_date = date_time.strftime("%x")
-        depart_time = date_time.strftime("%H:%M")
         response = self.client().get('/api/v1/rides/1')
         self.assertIn(1, response.json['ride'].values())
         self.assertIn("Colline", response.json['ride'].values())
         self.assertIn("Wait", response.json['ride'].values())
         self.assertIn("Ntinda", response.json['ride'].values())
         self.assertIn(2, response.json['ride'].values())
-        self.assertIn(depart_date, response.json['ride'].values())
-        self.assertIn(depart_time, response.json['ride'].values())
+        self.assertIn(self.depart_date, response.json['ride'].values())
+        self.assertIn(self.depart_time, response.json['ride'].values())
 
     def test_ride_not_found(self):
         """
@@ -102,13 +103,9 @@ class TestRideTestCase(TestCase):
         """
         This method tests for the creation of a ride offer
         """
-        date_time = datetime.now()
-        depart_date = date_time.strftime("%x")
-        depart_time = date_time.strftime("%X")
-
         response = self.client().post('/api/v1/rides/', data=json.dumps(
             dict(driver_firstname="Jack", driver_lastname="Ma", destination="Mbarara",
-                 departure_date=depart_date, departure_time=depart_time,
+                 departure_date=self.depart_date, departure_time=self.depart_time,
                  number_of_passengers=2)), content_type='application/json')
 
         self.assertEqual(response.status_code, 201)
@@ -121,13 +118,9 @@ class TestRideTestCase(TestCase):
         """
         This method tests that non json data is not sent
         """
-        date_time = datetime.now()
-        depart_date = date_time.strftime("%x")
-        depart_time = date_time.strftime("%X")
-
         response = self.client().post('/api/v1/rides/', data=json.dumps(
             dict(driver_firstname="Jack", driver_lastname="Ma", destination="Mbarara",
-                 departure_date=depart_date, departure_time=depart_time,
+                 departure_date=self.depart_date, departure_time=self.depart_time,
                  number_of_passengers=2)), content_type='text/plain')
 
         self.assertEqual(response.status_code, 400)
