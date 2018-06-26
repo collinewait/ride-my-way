@@ -4,6 +4,7 @@ This module provides responses to url requests.
 from datetime import datetime
 from flask import jsonify, request
 from flask.views import MethodView
+from api.rides.rides import RidesHandler
 
 class RideViews(MethodView):
     """
@@ -29,6 +30,8 @@ class RideViews(MethodView):
 
     requests = []
 
+    rides_handler = RidesHandler()
+
     def get(self, ride_id):
         """
         All ride offers are returned when no ride_id is specified at the end point
@@ -36,7 +39,7 @@ class RideViews(MethodView):
         :return: Json format
         """
         if not ride_id:
-            return jsonify({"message": "results retrieved successfully", "rides": self.rides})
+            return self.rides_handler.return_all_rides()
 
         for ride in self.rides:
             if ride['id'] == ride_id:
