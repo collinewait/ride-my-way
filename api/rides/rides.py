@@ -23,8 +23,22 @@ class RidesHandler(object):
     def return_all_rides(self):
         """
         This method returns all ride offers made
-        returns ride offers in a json format
+        returns ride offers in a JSON format
         :return
         """
         return jsonify({"message": "results retrieved successfully",
                         "rides": [x.__dict__ for x in self.rides]})
+
+    def return_single_ride(self, ride_id):
+        """
+        This remothod returns a single ride offer in
+        a JSON format
+        :param ride_id: Ride id
+        :return
+        """
+        for ride in self.rides:
+            if ride.ride_id == ride_id:
+                return jsonify({"Status code": 200, "ride": ride.__dict__,
+                                "message": "result retrieved successfully"})
+        return jsonify({"Status code": 200, "message": "Ride not found",
+                        "error_message": False})

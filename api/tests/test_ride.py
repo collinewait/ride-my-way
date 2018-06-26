@@ -50,7 +50,7 @@ class TestRideTestCase(TestCase):
         Test an item is returned with all the expected keys on the ride dictionary
         """
         response = self.client().get('/api/v1/rides/1')
-        self.assertIn("id", response.json['ride'])
+        self.assertIn("ride_id", response.json['ride'])
         self.assertIn("driver_firstname", response.json['ride'])
         self.assertIn("driver_lastname", response.json['ride'])
         self.assertIn("destination", response.json['ride'])

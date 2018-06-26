@@ -35,19 +35,16 @@ class RideViews(MethodView):
     def get(self, ride_id):
         """
         All ride offers are returned when no ride_id is specified at the end point
+        if a ride id is not set, return_all_rides() method is called
+        and if a ride id is set, return_single_ride(ride_id) method is called
         :param ride_id: Ride id
-        :return: Json format
+        :return: 
         """
         if not ride_id:
             return self.rides_handler.return_all_rides()
 
-        for ride in self.rides:
-            if ride['id'] == ride_id:
-                return jsonify({"Status code": 200, "ride": ride,
-                                "message": "result retrieved successfully"})
+        return self.rides_handler.return_single_ride(ride_id)
 
-        return jsonify({"Status code": 200, "message": "Ride not found",
-                        "error_message": False})
     def post(self, ride_id):
         """"
         Handles post requests
