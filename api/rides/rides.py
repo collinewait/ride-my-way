@@ -58,14 +58,12 @@ class RidesHandler(object):
 
         if not request.json["driver_firstname"] or not request.json["driver_lastname"]\
                 or not request.json["destination"]:
-            return jsonify({"status_code": 400, "data": request.json,
-                            "error_message": "Some fields are empty"}), 400
+            return self.fields_missing_info()
 
         if not request.json["departure_date"] or not request.json["departure_time"]\
                  or not request.json["number_of_passengers"]:
 
-            return jsonify({"status_code": 400, "data": request.json,
-                            "error_message": "Some fields are empty"}), 400
+            return self.fields_missing_info()
 
         ride = Ride(
             len(self.rides) + 1,
@@ -88,8 +86,7 @@ class RidesHandler(object):
         """
         if not request.json["passenger_name"] or not request.json["passenger_id"]\
             or not request.json["passenger_contact"]:
-            return jsonify({"status_code": 400, "data": request.json,
-                            "error_message": "Some fields are empty"}), 400
+            return self.fields_missing_info()
 
         for ride in self.rides:
             if ride.ride_id == ride_id:
@@ -105,3 +102,13 @@ class RidesHandler(object):
                                 "message": "request sent successfully"}), 201
 
         return jsonify({"Status code": 202, "error_message": "Ride not found",}), 202
+
+    @staticmethod
+    def fields_missing_info():
+        """
+        This method returns a JSON response when some fields in
+        the data sent are missing
+        :return
+        """
+        return jsonify({"status_code": 400, "data": request.json,
+                        "error_message": "Some fields are empty"}), 400
