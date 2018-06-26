@@ -38,7 +38,7 @@ class RideViews(MethodView):
         if a ride id is not set, return_all_rides() method is called
         and if a ride id is set, return_single_ride(ride_id) method is called
         :param ride_id: Ride id
-        :return: 
+        :return:
         """
         if not ride_id:
             return self.rides_handler.return_all_rides()
@@ -60,42 +60,7 @@ class RideViews(MethodView):
 
             return self.post_request_to_ride_offer(ride_id)
 
-        return self.post_ride_offer()
-
-    def post_ride_offer(self):
-        """
-        This method saves a ride offer when a ride_id is not set
-        It takes control from the post() method
-        :return
-        """
-        keys = ("driver_firstname", "driver_lastname", "destination",
-                "departure_date", "departure_time", "number_of_passengers")
-        if not set(keys).issubset(set(request.json)):
-            return jsonify({"error_message": "some of these fields are missing"}), 400
-
-        if not request.json["driver_firstname"] or not request.json["driver_lastname"]\
-                or not request.json["destination"]:
-            return jsonify({"status_code": 400, "data": request.json,
-                            "error_message": "Some fields are empty"}), 400
-
-        if not request.json["departure_date"] or not request.json["departure_time"]\
-                 or not request.json["number_of_passengers"]:
-
-            return jsonify({"status_code": 400, "data": request.json,
-                            "error_message": "Some fields are empty"}), 400
-
-        ride = {
-            "id": len(self.rides) + 1,
-            "driver_firstname": request.json['driver_firstname'],
-            "driver_lastname": request.json['driver_lastname'],
-            "destination": request.json['destination'],
-            "departure_date": request.json['departure_date'],
-            "departure_time": request.json['departure_time'],
-            "number_of_passengers": request.json['number_of_passengers'],
-        }
-        self.rides.append(ride)
-        return jsonify({"status_code": 201, "ride": ride,
-                        "message": "Ride added successfully"}), 201
+        return self.rides_handler.post_ride_offer()
 
     def post_request_to_ride_offer(self, ride_id):
         """

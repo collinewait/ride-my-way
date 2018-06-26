@@ -3,7 +3,7 @@ This module handles specific requsts made
 on the API end points
 """
 from datetime import datetime
-from flask import jsonify
+from flask import jsonify, request
 from api.rides.ride import Ride
 class RidesHandler(object):
     """
@@ -42,3 +42,38 @@ class RidesHandler(object):
                                 "message": "result retrieved successfully"})
         return jsonify({"Status code": 200, "message": "Ride not found",
                         "error_message": False})
+
+    def post_ride_offer(self):
+        """
+        This method saves a ride offer when a ride_id is not set
+        It takes control from the post() method
+        :return
+        """
+        keys = ("driver_firstname", "driver_lastname", "destination",
+                "departure_date", "departure_time", "number_of_passengers")
+        if not set(keys).issubset(set(request.json)):
+            return jsonify({"error_message": "some of these fields are missing"}), 400
+
+        if not request.json["driver_firstname"] or not request.json["driver_lastname"]\
+                or not request.json["destination"]:
+            return jsonify({"status_code": 400, "data": request.json,
+                            "error_message": "Some fields are empty"}), 400
+
+        if not request.json["departure_date"] or not request.json["departure_time"]\
+                 or not request.json["number_of_passengers"]:
+
+            return jsonify({"status_code": 400, "data": request.json,
+                            "error_message": "Some fields are empty"}), 400
+
+        ride = Ride(
+            len(self.rides) + 1,
+            request.json['driver_firstname'],
+            request.json['driver_lastname'],
+            request.json['destination'],
+            request.json['departure_date'],
+            request.json['departure_time'],
+            request.json['number_of_passengers']
+            )
+        self.rides.append(ride)
+        return jsonify({"status_code": 201, "ride": ride.__dict__,
+                        "message": "Ride added successfully"}), 201
