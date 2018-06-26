@@ -20,6 +20,8 @@ class RidesHandler(object):
         Ride(2, "Vicky", "Von", "Mukon", dapart_date, depart_time, 4),
     ]
 
+    requests = []
+
     def return_all_rides(self):
         """
         This method returns all ride offers made
@@ -77,3 +79,29 @@ class RidesHandler(object):
         self.rides.append(ride)
         return jsonify({"status_code": 201, "ride": ride.__dict__,
                         "message": "Ride added successfully"}), 201
+
+    def post_request_to_ride_offer(self, ride_id):
+        """
+        This method saves a request to a ride offer when a ride_id is set
+        It takes control from the post() method
+        :return
+        """
+        if not request.json["passenger_name"] or not request.json["passenger_id"]\
+            or not request.json["passenger_contact"]:
+            return jsonify({"status_code": 400, "data": request.json,
+                            "error_message": "Some fields are empty"}), 400
+
+        for ride in self.rides:
+            if ride.ride_id == ride_id:
+                ride_request = {
+                    "request_id": len(self.requests) + 1,
+                    "ride_id": ride_id,
+                    "passenger_name": request.json['passenger_name'],
+                    "passenger_id": request.json['passenger_id'],
+                    "passenger_contact": request.json['passenger_contact'],
+                }
+                self.requests.append(ride_request)
+                return jsonify({"Status code": 201, "request": ride_request,
+                                "message": "request sent successfully"}), 201
+
+        return jsonify({"Status code": 202, "error_message": "Ride not found",}), 202
