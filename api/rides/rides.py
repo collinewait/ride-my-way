@@ -53,7 +53,7 @@ class RidesHandler(object):
         keys = ("driver_firstname", "driver_lastname", "destination",
                 "departure_date", "departure_time", "number_of_passengers")
         if not set(keys).issubset(set(request.json)):
-            return jsonify({"error_message": "some of these fields are missing"}), 400
+            return self.request_missing_fields()
 
         request_condition = [
             request.json["driver_firstname"], request.json["driver_lastname"],
@@ -86,7 +86,7 @@ class RidesHandler(object):
         """
         request_keys = ("passenger_name", "passenger_id", "passenger_contact")
         if not set(request_keys).issubset(set(request.json)):
-            return jsonify({"error_message": "some of these fields are missing"}), 400
+            return self.request_missing_fields()
 
         if not request.json["passenger_name"] or not request.json["passenger_id"]\
             or not request.json["passenger_contact"]:
@@ -116,3 +116,11 @@ class RidesHandler(object):
         """
         return jsonify({"status_code": 400, "data": request.json,
                         "error_message": "Some fields are empty"}), 400
+    @staticmethod
+    def request_missing_fields():
+        """
+        This method returns a JSON response when containg the
+        error message that some fields are missing
+        :return
+        """
+        return jsonify({"error_message": "some of these fields are missing"}), 400
