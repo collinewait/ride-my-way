@@ -14,4 +14,3 @@ class Ride(object):
         self.departure_date = args[4]
         self.departure_time = args[5]
         self.number_of_passengers = args[6]
-        

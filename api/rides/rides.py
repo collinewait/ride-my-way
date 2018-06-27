@@ -5,6 +5,7 @@ on the API end points
 from datetime import datetime
 from flask import jsonify, request
 from api.rides.ride import Ride
+from api.rides.user import User
 class RidesHandler(object):
     """
     This class contains methods that handle specific
@@ -15,9 +16,12 @@ class RidesHandler(object):
     dapart_date = date_time.strftime("%x")
     depart_time = date_time.strftime("%H:%M")
 
+    user1 = User("Colline", "Wait", "coll@wait.com", "0771462657", "1234")
+    user2 = User("Vicky", "Von", "vic@vom.com", "0771658399", "1234")
+
     rides = [
-        Ride(1, "Colline", "Wait", "Ntinda", dapart_date, depart_time, 2),
-        Ride(2, "Vicky", "Von", "Mukon", dapart_date, depart_time, 4),
+        Ride(1, user1.first_name, user1.last_name, "Ntinda", dapart_date, depart_time, 2),
+        Ride(2, user2.first_name, user2.last_name, "Mukon", dapart_date, depart_time, 4),
     ]
 
     requests = []
