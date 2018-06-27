@@ -84,6 +84,10 @@ class RidesHandler(object):
         It takes control from the post() method
         :return
         """
+        request_keys = ("passenger_name", "passenger_id", "passenger_contact")
+        if not set(request_keys).issubset(set(request.json)):
+            return jsonify({"error_message": "some of these fields are missing"}), 400
+
         if not request.json["passenger_name"] or not request.json["passenger_id"]\
             or not request.json["passenger_contact"]:
             return self.fields_missing_info()
