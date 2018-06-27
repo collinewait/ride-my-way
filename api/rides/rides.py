@@ -42,8 +42,7 @@ class RidesHandler(object):
             if ride.ride_id == ride_id:
                 return jsonify({"Status code": 200, "ride": ride.__dict__,
                                 "message": "result retrieved successfully"})
-        return jsonify({"Status code": 200, "message": "Ride not found",
-                        "error_message": False})
+        return jsonify({}), 204
 
     def post_ride_offer(self):
         """
@@ -102,7 +101,7 @@ class RidesHandler(object):
                 return jsonify({"Status code": 201, "request": ride_request,
                                 "message": "request sent successfully"}), 201
 
-        return jsonify({"Status code": 202, "error_message": "Ride not found",}), 202
+        return jsonify({}), 204
 
     @staticmethod
     def fields_missing_info():

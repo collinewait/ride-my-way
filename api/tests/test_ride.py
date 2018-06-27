@@ -77,10 +77,7 @@ class TestRideTestCase(TestCase):
         A return contsins a status code of 200
         """
         response = self.client().get('/api/v1/rides/20')
-        self.assertEqual(response.status_code, 200)
-        self.assertIn("message", response.json)
-        self.assertIn("Ride not found", response.json.values())
-        self.assertIn(False, response.json.values())
+        self.assertEqual(response.status_code, 204)
 
     def test_error_hander_returns_json(self):
         """
@@ -190,3 +187,15 @@ class TestRideTestCase(TestCase):
         self.assertIn("error_message", response.json)
         self.assertEqual("Some fields are empty", response.json['error_message'])
         self.assertTrue(response.json)
+
+    def test_non_existing_ride_request(self):
+        """
+        This method tests that a request made to a non existing
+        ride offer returns a JSON response showing ride not
+        found
+        """
+        response = self.client().post('/api/v1/rides/22/requests', data=json.dumps(
+            dict(passenger_name="Jack", passenger_id=123, passenger_contact="0771462657"
+                )), content_type='application/json')
+
+        self.assertEqual(response.status_code, 204)
