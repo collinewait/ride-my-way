@@ -92,8 +92,13 @@ class RidesHandler(object):
         if not set(request_keys).issubset(set(request.json)):
             return self.request_missing_fields()
 
-        if not request.json["passenger_name"] or not request.json["passenger_id"]\
-            or not request.json["passenger_contact"]:
+        ride_request = [
+            request.json["passenger_name"],
+            request.json["passenger_id"],
+            request.json["passenger_contact"]
+        ]
+
+        if not all(ride_request):
             return self.fields_missing_info()
 
         for ride in self.rides:
