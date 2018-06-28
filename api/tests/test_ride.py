@@ -26,14 +26,12 @@ class TestRideTestCase(TestCase):
         """Test API can get all ride offers (GET request)."""
         response = self.client().get('/api/v1/rides/')
         self.assertEqual(response.status_code, 200)
-        self.assertIn("rides", response.json)
         self.assertIsInstance(response.json['rides'], list)
         self.assertTrue(response.json["rides"])
         self.assertIsInstance(response.json["rides"][0], dict)
         self.assertIn(1, response.json["rides"][0].values())
         self.assertIn(2, response.json["rides"][1].values())
-        self.assertIn("message", response.json)
-        self.assertIn("results retrieved successfully", response.json.values())
+        self.assertIn("results retrieved successfully", response.json["message"])
 
     def test_get_one_ride_offer(self):
         """
@@ -43,36 +41,22 @@ class TestRideTestCase(TestCase):
         response = self.client().get('/api/v1/rides/1')
         self.assertEqual(response.status_code, 200)
         self.assertIn("ride", response.json)
-        self.assertIn("result retrieved successfully", response.json.values())
-        self.assertIn("message", response.json)
+        self.assertIn("result retrieved successfully", response.json["message"])
         self.assertIsInstance(response.json['ride'], dict)
         self.assertEqual(len(response.json['ride']), 7)
 
-    def test_all_ride_keys_returned(self):
+    def test_ride_attributes_returned(self):
         """
-        Test an item is returned with all the expected keys on the ride dictionary
-        """
-        response = self.client().get('/api/v1/rides/1')
-        self.assertIn("ride_id", response.json['ride'])
-        self.assertIn("driver_firstname", response.json['ride'])
-        self.assertIn("driver_lastname", response.json['ride'])
-        self.assertIn("destination", response.json['ride'])
-        self.assertIn("departure_date", response.json['ride'])
-        self.assertIn("departure_time", response.json['ride'])
-        self.assertIn("number_of_passengers", response.json['ride'])
-
-    def test_all_ride_values_returned(self):
-        """
-        Test all values expected  in a ride dictionary are returned
+        Test that all values expected  in a ride dictionary are returned
         """
         response = self.client().get('/api/v1/rides/1')
         self.assertIn(1, response.json['ride'].values())
-        self.assertIn("Colline", response.json['ride'].values())
-        self.assertIn("Wait", response.json['ride'].values())
-        self.assertIn("Ntinda", response.json['ride'].values())
-        self.assertIn(2, response.json['ride'].values())
-        self.assertIn(self.depart_date, response.json['ride'].values())
-        self.assertIn(self.depart_time, response.json['ride'].values())
+        self.assertIn("Colline", response.json['ride']["driver_firstname"])
+        self.assertIn("Wait", response.json['ride']["driver_lastname"])
+        self.assertIn("Ntinda", response.json['ride']["destination"])
+        self.assertEqual(2, response.json['ride']["number_of_passengers"])
+        self.assertEqual(self.depart_date, response.json['ride']["departure_date"])
+        self.assertEqual(self.depart_time, response.json['ride']["departure_time"])
 
     def test_ride_not_found(self):
         """
@@ -91,14 +75,11 @@ class TestRideTestCase(TestCase):
         response = self.client().get('/api/v1/rides/me')
         self.assertEqual(response.status_code, 404)
         self.assertIsInstance(response.json, dict)
-        self.assertIn("error_message", response.json)
-        self.assertIn("status_code", response.json)
-        self.assertIn("url", response.json)
-        self.assertIn("The requested resource was not found on the server",
-                      response.json.values())
-        self.assertIn(404, response.json.values())
-        self.assertIn("http://localhost/api/v1/rides/me",
-                      response.json.values())
+        self.assertEqual("The requested resource was not found on the server",
+                         response.json["error_message"])
+        self.assertEqual(404, response.json["status_code"])
+        self.assertEqual("http://localhost/api/v1/rides/me",
+                         response.json["url"])
 
     def test_post_creates_a_ride_offer(self):
         """
@@ -128,9 +109,8 @@ class TestRideTestCase(TestCase):
                  number_of_passengers=2)), content_type='text/plain')
 
         self.assertEqual(response.status_code, 400)
-        self.assertIn("error_message", response.json)
-        self.assertEqual("content not JSON", response.json['error_message'])
         self.assertTrue(response.json)
+        self.assertEqual("content not JSON", response.json['error_message'])
 
     def test_empty_attributes_not_sent(self):
         """
@@ -143,9 +123,8 @@ class TestRideTestCase(TestCase):
                  number_of_passengers=2)), content_type='application/json')
 
         self.assertEqual(response.status_code, 400)
-        self.assertIn("error_message", response.json)
-        self.assertEqual("Some fields are empty", response.json['error_message'])
         self.assertTrue(response.json)
+        self.assertEqual("Some fields are empty", response.json['error_message'])
 
     def test_partial_fields_not_sent(self):
         """
@@ -157,7 +136,6 @@ class TestRideTestCase(TestCase):
                  driver_lastname=self.user_test.last_name, destination="Mbarara",
                  number_of_passengers=2)), content_type='application/json')
         self.assertEqual(response.status_code, 400)
-        self.assertIn("error_message", response.json)
         self.assertEqual("some of these fields are missing",
                          response.json['error_message'])
 
@@ -174,7 +152,6 @@ class TestRideTestCase(TestCase):
 
         self.assertEqual(response.status_code, 201)
         self.assertIn("request", response.json)
-        self.assertIn("message", response.json)
         self.assertEqual("request sent successfully", response.json['message'])
         self.assertTrue(response.json['request'])
 
@@ -188,7 +165,6 @@ class TestRideTestCase(TestCase):
                  passenger_contact=self.user_test.phone_number
                 )), content_type='text/plain')
         self.assertEqual(response.status_code, 400)
-        self.assertIn("error_message", response.json)
         self.assertEqual("content not JSON", response.json['error_message'])
 
     def test_empty_request_attributes(self):
@@ -201,9 +177,8 @@ class TestRideTestCase(TestCase):
                 )), content_type='application/json')
 
         self.assertEqual(response.status_code, 400)
-        self.assertIn("error_message", response.json)
-        self.assertEqual("Some fields are empty", response.json['error_message'])
         self.assertTrue(response.json)
+        self.assertEqual("Some fields are empty", response.json['error_message'])
 
     def test_non_existing_ride_request(self):
         """
@@ -229,6 +204,5 @@ class TestRideTestCase(TestCase):
             dict(passenger_contact=self.user_test.phone_number)),
                                       content_type='application/json')
         self.assertEqual(response.status_code, 400)
-        self.assertIn("error_message", response.json)
         self.assertEqual("some of these fields are missing",
                          response.json['error_message'])
