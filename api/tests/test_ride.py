@@ -4,8 +4,8 @@ This module contains tests for the api end points.
 from unittest import TestCase
 from datetime import datetime
 from flask import json
-from api.app import APP
-from api.rides.user import User
+from api import APP
+from api.models.user import User
 
 class TestRideTestCase(TestCase):
     """

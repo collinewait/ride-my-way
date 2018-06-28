@@ -3,7 +3,7 @@ This module provides responses to url requests.
 """
 from flask import jsonify, request
 from flask.views import MethodView
-from api.rides.rides import RidesHandler
+from api.models.rides import RidesHandler
 
 class RideViews(MethodView):
     """
