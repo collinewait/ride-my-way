@@ -46,7 +46,7 @@ class RidesHandler(object):
             if ride.ride_id == ride_id:
                 return jsonify({"Status code": 200, "ride": ride.__dict__,
                                 "message": "result retrieved successfully"})
-        return jsonify({}), 204
+        return self.no_ride_available(ride_id)
 
     def post_ride_offer(self):
         """
@@ -114,7 +114,7 @@ class RidesHandler(object):
                 return jsonify({"Status code": 201, "request": ride_request,
                                 "message": "request sent successfully"}), 201
 
-        return jsonify({}), 204
+        return self.no_ride_available(ride_id)
 
     @staticmethod
     def fields_missing_info():
@@ -133,3 +133,12 @@ class RidesHandler(object):
         :return
         """
         return jsonify({"error_message": "some of these fields are missing"}), 400
+
+    @staticmethod
+    def no_ride_available(ride_id):
+        """
+        This method returns a JSON response with a message of no ride
+        found
+        :return
+        """
+        return jsonify({"message": "No ride available with id: " + str(ride_id)}), 200

@@ -80,7 +80,8 @@ class TestRideTestCase(TestCase):
         A return contsins a status code of 200
         """
         response = self.client().get('/api/v1/rides/20')
-        self.assertEqual(response.status_code, 204)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual("No ride available with id: 20", response.json['message'])
 
     def test_error_hander_returns_json(self):
         """
@@ -216,7 +217,8 @@ class TestRideTestCase(TestCase):
                  passenger_contact=self.user_test.phone_number
                 )), content_type='application/json')
 
-        self.assertEqual(response.status_code, 204)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual("No ride available with id: 22", response.json['message'])
 
     def test_partial_request_sent(self):
         """
