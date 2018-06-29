@@ -6,6 +6,7 @@ from datetime import datetime
 from flask import jsonify, request
 from api.models.ride import Ride
 from api.models.user import User
+from api.models.request import Request
 
 
 class RidesHandler(object):
@@ -105,15 +106,15 @@ class RidesHandler(object):
 
         for ride in self.rides:
             if ride.ride_id == ride_id:
-                ride_request = {
-                    "request_id": len(self.requests) + 1,
-                    "ride_id": ride_id,
-                    "passenger_name": request.json['passenger_name'],
-                    "passenger_id": request.json['passenger_id'],
-                    "passenger_contact": request.json['passenger_contact'],
-                }
-                self.requests.append(ride_request)
-                return jsonify({"Status code": 201, "request": ride_request,
+                ride_request = Request(
+                    len(self.requests) + 1,
+                    ride_id,
+                    request.json['passenger_name'],
+                    request.json['passenger_id'],
+                    request.json['passenger_contact']
+                )
+                self.requests.append(ride_request.__dict__)
+                return jsonify({"Status code": 201, "request": ride_request.__dict__,
                                 "message": "request sent successfully"}), 201
 
         return self.no_ride_available(ride_id)
