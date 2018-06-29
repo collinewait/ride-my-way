@@ -7,6 +7,7 @@ from flask import json
 from api import APP
 from api.models.user import User
 
+
 class TestRideTestCase(TestCase):
     """
     Tests run for the api end pints.

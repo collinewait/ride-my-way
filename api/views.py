@@ -5,6 +5,7 @@ from flask import jsonify, request
 from flask.views import MethodView
 from api.models.rides import RidesHandler
 
+
 class RideViews(MethodView):
     """
     This class contains methods that respond to various url end points.

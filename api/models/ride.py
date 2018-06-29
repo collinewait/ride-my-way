@@ -1,6 +1,8 @@
 """
 This module is a ride model with its attributes
 """
+
+
 class Ride(object):
     """
     This class represents a Ride entity

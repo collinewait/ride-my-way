@@ -3,6 +3,7 @@ This module handles Errors when a user hits a wrong api end point.
 """
 from flask import jsonify, request
 
+
 class ErrorHandler(object):
     """
     This Class handles request errors when a user sends a wrong url.

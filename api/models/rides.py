@@ -6,6 +6,8 @@ from datetime import datetime
 from flask import jsonify, request
 from api.models.ride import Ride
 from api.models.user import User
+
+
 class RidesHandler(object):
     """
     This class contains methods that handle specific
