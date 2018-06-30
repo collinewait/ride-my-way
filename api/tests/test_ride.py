@@ -6,25 +6,50 @@ from datetime import datetime
 from flask import json
 from api import APP
 from api.models.user import User
+from api.models.ride import Ride
+from api.models.request import Request
 
 
 class TestRideTestCase(TestCase):
     """
     Tests run for the api end pints.
     """
-    def setUp(self):
-        """Define test variables and initialize app."""
-        self.app = APP
-        self.client = self.app.test_client
 
     date_time = datetime.now()
     depart_date = date_time.strftime("%x")
     depart_time = date_time.strftime("%H:%M")
 
     user_test = User(123, "Jack", "Ma", "jack@ma.com", "0771462657", "1234")
+    user1 = User(1234, "Colline", "Wait", "coll@wait.com", "0771462657", "1234")
+    user2 = User(1235, "Vicky", "Von", "vic@vom.com", "0771658399", "1234")
+
+    ride1 = Ride(
+        1, user1.first_name, user1.last_name,
+        "Ntinda", depart_date, depart_time, 2
+    )
+    ride2 = Ride(
+        2, user2.first_name, user2.last_name,
+        "Mukon", depart_date, depart_time, 4
+    )
+
+    request = Request(1, 1, user1.first_name, user1.user_id, user1.phone_number)
+
+    def setUp(self):
+        """Define test variables and initialize app."""
+        self.app = APP
+        self.client = self.app.test_client
+        self.client().post('/api/v1/rides/', data=json.dumps(
+            self.ride1.__dict__), content_type='application/json')
+        self.client().post('/api/v1/rides/', data=json.dumps(
+            self.ride2.__dict__), content_type='application/json')
+
 
     def test_api_gets_all_ride_offers(self):
-        """Test API can get all ride offers (GET request)."""
+        """
+        Test API can get all ride offers (GET request).
+        first send some data of rides and then make a request to get
+        all the data
+        """
         response = self.client().get('/api/v1/rides/')
         self.assertEqual(response.status_code, 200)
         self.assertIsInstance(response.json['rides'], list)
@@ -87,10 +112,7 @@ class TestRideTestCase(TestCase):
         This method tests for the creation of a ride offer
         """
         response = self.client().post('/api/v1/rides/', data=json.dumps(
-            dict(driver_firstname=self.user_test.first_name,
-                 driver_lastname=self.user_test.last_name, destination="Mbarara",
-                 departure_date=self.depart_date, departure_time=self.depart_time,
-                 number_of_passengers=2)), content_type='application/json')
+            self.ride1.__dict__), content_type='application/json')
 
         self.assertEqual(response.status_code, 201)
         self.assertIn("ride", response.json)
@@ -103,11 +125,7 @@ class TestRideTestCase(TestCase):
         This method tests that non json data is not sent
         """
         response = self.client().post('/api/v1/rides/', data=json.dumps(
-            dict(driver_firstname=self.user_test.first_name,
-                 driver_lastname=self.user_test.last_name,
-                 destination="Mbarara", departure_date=self.depart_date,
-                 departure_time=self.depart_time,
-                 number_of_passengers=2)), content_type='text/plain')
+            self.ride1.__dict__), content_type='text/plain')
 
         self.assertEqual(response.status_code, 400)
         self.assertTrue(response.json)
@@ -118,8 +136,8 @@ class TestRideTestCase(TestCase):
         This method tests that data is not sent with empty fields
         """
         response = self.client().post('/api/v1/rides/', data=json.dumps(
-            dict(driver_firstname=self.user_test.first_name,
-                 driver_lastname=self.user_test.last_name, destination="Mbarara",
+            dict(driver_firstname=self.user1.first_name,
+                 driver_lastname=self.user1.last_name, destination="Mbarara",
                  departure_date="", departure_time="",
                  number_of_passengers=2)), content_type='application/json')
 
@@ -133,8 +151,8 @@ class TestRideTestCase(TestCase):
         on creating a ride offer
         """
         response = self.client().post('/api/v1/rides/', data=json.dumps(
-            dict(driver_firstname=self.user_test.first_name,
-                 driver_lastname=self.user_test.last_name, destination="Mbarara",
+            dict(driver_firstname=self.user1.first_name,
+                 driver_lastname=self.user1.last_name, destination="Mbarara",
                  number_of_passengers=2)), content_type='application/json')
         self.assertEqual(response.status_code, 400)
         self.assertEqual("some of these fields are missing",
@@ -146,10 +164,7 @@ class TestRideTestCase(TestCase):
         """
 
         response = self.client().post('/api/v1/rides/1/requests', data=json.dumps(
-            dict(passenger_name=self.user_test.first_name,
-                 passenger_id=self.user_test.user_id,
-                 passenger_contact=self.user_test.phone_number
-                )), content_type='application/json')
+            self.request.__dict__), content_type='application/json')
 
         self.assertEqual(response.status_code, 201)
         self.assertIn("request", response.json)
@@ -161,10 +176,7 @@ class TestRideTestCase(TestCase):
         This method tests that non json request is not sent
         """
         response = self.client().post('/api/v1/rides/1/requests', data=json.dumps(
-            dict(passenger_name="Jack",
-                 passenger_id=self.user_test.user_id,
-                 passenger_contact=self.user_test.phone_number
-                )), content_type='text/plain')
+            self.request.__dict__), content_type='text/plain')
         self.assertEqual(response.status_code, 400)
         self.assertEqual("content not JSON", response.json['error_message'])
 
@@ -188,10 +200,7 @@ class TestRideTestCase(TestCase):
         found
         """
         response = self.client().post('/api/v1/rides/22/requests', data=json.dumps(
-            dict(passenger_name="Jack",
-                 passenger_id=self.user_test.user_id,
-                 passenger_contact=self.user_test.phone_number
-                )), content_type='application/json')
+            self.request.__dict__), content_type='application/json')
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual("No ride available with id: 22", response.json['message'])

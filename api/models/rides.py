@@ -2,10 +2,8 @@
 This module handles specific requsts made
 on the API end points
 """
-from datetime import datetime
 from flask import jsonify, request
 from api.models.ride import Ride
-from api.models.user import User
 from api.models.request import Request
 
 
@@ -15,17 +13,8 @@ class RidesHandler(object):
     requests made on the API end point
     Control is obtained from the RidesView class
     """
-    date_time = datetime.now()
-    dapart_date = date_time.strftime("%x")
-    depart_time = date_time.strftime("%H:%M")
 
-    user1 = User(1234, "Colline", "Wait", "coll@wait.com", "0771462657", "1234")
-    user2 = User(1235, "Vicky", "Von", "vic@vom.com", "0771658399", "1234")
-
-    rides = [
-        Ride(1, user1.first_name, user1.last_name, "Ntinda", dapart_date, depart_time, 2),
-        Ride(2, user2.first_name, user2.last_name, "Mukon", dapart_date, depart_time, 4),
-    ]
+    rides = []
 
     requests = []
 
@@ -49,7 +38,7 @@ class RidesHandler(object):
             if ride.ride_id == ride_id:
                 return jsonify({"Status code": 200, "ride": ride.__dict__,
                                 "message": "result retrieved successfully"})
-        return self.no_ride_available(ride_id)
+            return self.no_ride_available(ride_id)
 
     def post_ride_offer(self):
         """
