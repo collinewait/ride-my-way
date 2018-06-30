@@ -47,8 +47,6 @@ class TestRideTestCase(TestCase):
     def test_api_gets_all_ride_offers(self):
         """
         Test API can get all ride offers (GET request).
-        first send some data of rides and then make a request to get
-        all the data
         """
         response = self.client().get('/api/v1/rides/')
         self.assertEqual(response.status_code, 200)
@@ -61,8 +59,8 @@ class TestRideTestCase(TestCase):
 
     def test_get_one_ride_offer(self):
         """
-        Test an item is returned on a get request
-        :return:
+        Test an item (a ride) is returned on a get request.
+        (GET request)
         """
         response = self.client().get('/api/v1/rides/1')
         self.assertEqual(response.status_code, 200)
@@ -110,6 +108,7 @@ class TestRideTestCase(TestCase):
     def test_post_creates_a_ride_offer(self):
         """
         This method tests for the creation of a ride offer
+        (POST request)
         """
         response = self.client().post('/api/v1/rides/', data=json.dumps(
             self.ride1.__dict__), content_type='application/json')
@@ -161,6 +160,7 @@ class TestRideTestCase(TestCase):
     def test_post_joins_a_ride_offer(self):
         """
         This method tests the joinig of a ride offer
+        (POST request)
         """
 
         response = self.client().post('/api/v1/rides/1/requests', data=json.dumps(
